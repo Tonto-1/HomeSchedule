@@ -28,11 +28,6 @@ public class PhotoController implements Initializable{
 	      
 	      // datePicker에서 날짜를 선택했을 때
 			datePicker1.valueProperty().addListener(new ChangeListener<LocalDate>() {
-//	         @Override
-//	         public void changed(Observable <? extends LocalDate> observable, LocalDate oldValue,
-//	               LocalDate newValue) {
-//	           
-//	         }
 
 			@Override
 			public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue,
@@ -88,11 +83,6 @@ public class PhotoController implements Initializable{
 			
 		     // datePicker에서 날짜를 선택했을 때
 					datePicker2.valueProperty().addListener(new ChangeListener<LocalDate>() {
-//			         @Override
-//			         public void changed(Observable <? extends LocalDate> observable, LocalDate oldValue,
-//			               LocalDate newValue) {
-//			           
-//			         }
 
 					@Override
 					public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue,

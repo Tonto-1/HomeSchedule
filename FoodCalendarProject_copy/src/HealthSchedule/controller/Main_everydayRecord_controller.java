@@ -26,25 +26,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import net.halowd.saveImg.SaveImg;
 
-
-//import java.awt.Image;
-////import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.SQLException;
-//
-//import javax.swing.*;
-//import javax.swing.filechooser.FileNameExtensionFilter;
-//
-//
-//import net.halowd.saveImg.SaveImg;
-//
-//import java.io.File;
-//import java.io.IOException;
-
-
 public class Main_everydayRecord_controller implements Initializable{
 
    @FXML private AnchorPane pane;
@@ -278,6 +259,46 @@ public class Main_everydayRecord_controller implements Initializable{
                  e.printStackTrace();
                  }   
      }
+      
+      //사진업로드 버튼
+      public void uploadBtn(ActionEvent event) {
+          try {
+            
+                FileChooser fc = new FileChooser();
+                  fc.setTitle("이미지 선택");
+                  fc.setInitialDirectory(new File("C:/"));
+                  ExtensionFilter imgType = new ExtensionFilter("image file", "*.jpg", "*.gif", "*.png");
+                  fc.getExtensionFilters().add(imgType);
+                  File selectedFile =  fc.showOpenDialog(null);
+                  
+                  if(selectedFile!=null) {
+                     //upload.setText(selectedFile.toURI().toString());
+                     SaveImg saveImg = new SaveImg();
+                   
+                     String file = selectedFile.toURI().toString();
+
+                     String path = "src/images";
+                     
+                   int result = saveImg.saveImgFromUrl(file, path);
+                   if (result == 1) {
+                      String savePath = saveImg.getPath();
+                      System.out.println("저장된경로 : " + savePath);
+                      String saveFileName = saveImg.getSavedFileName();
+                      System.out.println("저장된파일이름 : " + saveFileName);
+                      System.out.println((savePath+"/"+saveFileName));
+                      
+                      todayPhoto.setImage(new Image(getClass().getResource("../images/"+saveFileName).toString()));
+           
+                   }
+                  }
+                  
+                  
+             } catch (Exception e) {
+                e.printStackTrace();
+             }
+
+      }      
+      
       
    
 }
